@@ -1,0 +1,44 @@
+{
+  "services": [
+    {
+      "name": "ingest-1",
+      "port": 7101,
+      "initial": "v1",
+      "configs": [
+        { "name": "v1",  "capacities": { "orders": 8, "payments": 1 }, "quota": 4 },
+        { "name": "v2t", "capacities": { "orders": 4, "payments": 4 }, "quota": 5 },
+        { "name": "v2",  "capacities": { "orders": 1, "payments": 8 }, "quota": 4 }
+      ]
+    },
+    {
+      "name": "ingest-2",
+      "port": 7102,
+      "initial": "v1",
+      "configs": [
+        { "name": "v1",  "capacities": { "orders": 8, "payments": 1 }, "quota": 4 },
+        { "name": "v2t", "capacities": { "orders": 4, "payments": 4 }, "quota": 5 },
+        { "name": "v2",  "capacities": { "orders": 1, "payments": 8 }, "quota": 4 }
+      ]
+    },
+    {
+      "name": "worker-1",
+      "port": 7103,
+      "initial": "v1",
+      "configs": [
+        { "name": "v1",  "capacities": { "orders": 1, "payments": 8 }, "quota": 4 },
+        { "name": "v2t", "capacities": { "orders": 4, "payments": 4 }, "quota": 5 },
+        { "name": "v2",  "capacities": { "orders": 8, "payments": 1 }, "quota": 4 }
+      ]
+    },
+    {
+      "name": "worker-2",
+      "port": 7104,
+      "initial": "v1",
+      "configs": [
+        { "name": "v1",  "capacities": { "orders": 1, "payments": 8 }, "quota": 4 },
+        { "name": "v2t", "capacities": { "orders": 4, "payments": 4 }, "quota": 5 },
+        { "name": "v2",  "capacities": { "orders": 8, "payments": 1 }, "quota": 4 }
+      ]
+    }
+  ]
+}

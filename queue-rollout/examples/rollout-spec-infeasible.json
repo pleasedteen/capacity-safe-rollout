@@ -1,0 +1,53 @@
+{
+  "queues": [
+    { "name": "orders", "minCapacity": 12 },
+    { "name": "payments", "minCapacity": 12 }
+  ],
+  "quotaLimit": 16,
+  "services": [
+    {
+      "name": "ingest-1",
+      "endpoint": "http://127.0.0.1:7101",
+      "target": "v2",
+      "configs": [
+        { "name": "v1",  "capacities": { "orders": 8, "payments": 1 }, "quota": 4 },
+        { "name": "v2t", "capacities": { "orders": 4, "payments": 4 }, "quota": 5 },
+        { "name": "v2",  "capacities": { "orders": 1, "payments": 8 }, "quota": 4 }
+      ]
+    },
+    {
+      "name": "ingest-2",
+      "endpoint": "http://127.0.0.1:7102",
+      "target": "v2",
+      "configs": [
+        { "name": "v1",  "capacities": { "orders": 8, "payments": 1 }, "quota": 4 },
+        { "name": "v2t", "capacities": { "orders": 4, "payments": 4 }, "quota": 5 },
+        { "name": "v2",  "capacities": { "orders": 1, "payments": 8 }, "quota": 4 }
+      ]
+    },
+    {
+      "name": "worker-1",
+      "endpoint": "http://127.0.0.1:7103",
+      "target": "v2",
+      "configs": [
+        { "name": "v1",  "capacities": { "orders": 1, "payments": 8 }, "quota": 4 },
+        { "name": "v2t", "capacities": { "orders": 4, "payments": 4 }, "quota": 5 },
+        { "name": "v2",  "capacities": { "orders": 8, "payments": 1 }, "quota": 4 }
+      ]
+    },
+    {
+      "name": "worker-2",
+      "endpoint": "http://127.0.0.1:7104",
+      "target": "v2",
+      "configs": [
+        { "name": "v1",  "capacities": { "orders": 1, "payments": 8 }, "quota": 4 },
+        { "name": "v2t", "capacities": { "orders": 4, "payments": 4 }, "quota": 5 },
+        { "name": "v2",  "capacities": { "orders": 8, "payments": 1 }, "quota": 4 }
+      ]
+    }
+  ],
+  "budgets": {
+    "rollout": { "waves": 3, "maxPerWave": 2 },
+    "rollback": { "waves": 4, "maxPerWave": 2 }
+  }
+}
